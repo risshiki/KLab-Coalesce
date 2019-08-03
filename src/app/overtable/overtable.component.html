@@ -1,0 +1,52 @@
+
+
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        <ng-container matColumnDef="serial_no">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.serial_no}} </td>
+        </ng-container>
+      
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+      
+
+        <ng-container matColumnDef="last_evaluation">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Evaluation </th>
+          <td mat-cell *matCellDef="let element"> {{element.last_evaluation}} </td>
+        </ng-container>
+      
+
+        <ng-container matColumnDef="last_check_in">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Check In </th>
+          <td mat-cell *matCellDef="let element"> {{element.last_check_in}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="collaboration">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Collaboration </th>
+            <td mat-cell *matCellDef="let element"> {{element.collaboration}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="communication">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Communication </th>
+                <td mat-cell *matCellDef="let element"> {{element.problem_solving}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="problem_solving">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Problem Solving </th>
+          <td mat-cell *matCellDef="let element"> {{element.problem_solving}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="group_discussion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Group Discussion </th>
+          <td mat-cell *matCellDef="let element"> {{element.group_discussion}} </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+

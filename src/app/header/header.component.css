@@ -1,0 +1,17 @@
+.header-component
+{
+    z-index: 1;
+}
+img#klab-logo
+{
+    transform: scale(0.5);
+    margin-bottom: 5%;
+}
+
+img#klab-name
+{
+    transform: scale(0.5);
+    
+    margin-bottom: 7%;
+    margin-left: -4%;
+}

@@ -1,0 +1,57 @@
+
+.homepage
+{
+    background-image: url("https://anima-uploads.s3.amazonaws.com/projects/5d280040f3c1a5b03fe80ee2/releases/5d2de932b8a66527697c8b55/img/home-vintage-texture-15.png");
+    position: fixed;
+    top: 10%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+}
+
+h1
+{
+    color: white;
+    font-size: 72px;
+    margin-left: 15%;
+    font-family: 'Trebuchet MS';
+}
+.button {
+    border-width: 3px;
+    border-color: black;
+    background-image: url("https://anima-uploads.s3.amazonaws.com/projects/5d280040f3c1a5b03fe80ee2/releases/5d2de932b8a66527697c8b55/img/home-vintage-texture-15.png");
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    width : 200px;
+    height : 100px;
+    margin-right: 50px;
+    border-radius: 30px;
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.6);   
+    cursor: pointer; 
+  }
+
+  .button:active {
+    
+    background-color: gray;
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+     -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+          box-shadow: inset 0px 0px 5px #c1c1c1;
+  }
+  .courses
+  {
+    margin-top: 7%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .welcomediv
+  {
+    display: flex;
+    justify-content: center;
+  }
+  

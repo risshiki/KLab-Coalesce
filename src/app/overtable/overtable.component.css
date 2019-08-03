@@ -1,0 +1,18 @@
+table {
+    width: 90%;
+    margin-top: 5%;
+    margin-left: 5%;
+    border-radius: 20px;
+  }
+  
+  th.mat-sort-header-sorted {
+    color: black;
+  }
+
+  .mat-row:nth-child(even){
+    background-color:white;
+    }
+
+.mat-row:nth-child(odd){
+    background-color:rgba(247,247,247,1.0);
+    }

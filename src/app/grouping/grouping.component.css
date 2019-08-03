@@ -1,0 +1,548 @@
+/* .mat-radio-button
+{
+    display: block;
+} */
+
+.priority-elements
+{
+    min-width: 30px;
+    margin-top : 2%;
+    margin-bottom: 2%;
+    border: 1px solid black;
+
+}
+.draggable-priority
+{
+    float: left;
+    margin-left : 10px;
+}
+.save-priority
+{
+    margin-top: 20px;
+}
+.label-white
+{
+    color : white;
+    margin-left: 0.5%;
+}
+
+.configure-grouping
+{
+    background: transparent;
+    border: 2px solid white;
+    margin-left: 8%;
+    min-height: 40px;
+    color: #F7AA01;
+    margin-right: 3%;
+}
+
+.configure-grouping:hover
+{
+    border : 2px solid #F7AA01;
+}
+
+.hover_background_grouping{
+    background:rgba(0,0,0,.4);
+    cursor:pointer;
+    display:block;
+    height:100%;
+    position:fixed;
+    text-align:center;
+    top:0;
+    width:100%;
+    z-index:10000;
+}
+
+.hover_background_group .conf-smart-grouping{
+    display:inline-block;
+    height:100%;
+    vertical-align:middle;
+}
+.hover_background_grouping > div {
+    background-color: #fff;
+    box-shadow: 10px 10px 60px #555;
+    display: inline-block;
+    height: auto;
+    max-width: 551px;
+    min-height: 100px;
+    vertical-align: middle;
+    width: 60%;
+    position: absolute;
+    top : 40%;
+    right : 40%;
+    border-radius: 8px;
+    padding: 15px 5%;
+}
+.popupCloseButton {
+    background-color: #fff;
+    border: 3px solid #999;
+    border-radius: 50px;
+    cursor: pointer;
+    display: inline-block;
+    font-family: arial;
+    font-weight: bold;
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    font-size: 25px;
+    line-height: 30px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+.popupCloseButton:hover {
+    background-color: #ccc;
+}
+
+
+
+.student-group-describer
+{
+    color : white;
+}
+
+.add-group-list
+{
+    background: transparent;
+    border: 2px solid white;
+    margin-left: 3%;
+    color: white;
+    margin-right: 3%;
+    border-radius: 50%;
+}
+
+.add-group-list:hover
+{
+    color :orange;
+    border: 2px solid orange;
+}
+
+.student-input-value
+{
+    background: transparent;
+    border: 2px solid white;
+    margin-left: 3%;
+    color: white;
+    margin-right: 3%;
+    border-radius: 50%;
+}
+.student-input-value:hover
+{
+    color : #F7AA01;
+    border: 2px solid #F7AA01;
+}
+
+button#smart-grouping
+{
+    display: inline-block;
+    /* margin-left: 8%; */
+    min-height: 40px;
+    background-color:#F7AA01;
+    color : white;
+    border : 2px solid white;
+    font-size: 14px;
+    border-radius: 10px;
+
+}
+
+button#smart-grouping:hover
+{
+    border : 2px solid gray;   
+}
+
+
+/* find me */
+.ui-g-12.ui-md-6.ui-g-nopad.drag-column
+{
+    width: 70%;
+    min-width: 70%;
+    display: grid;
+    height: 100%;
+    grid-template-columns: 0.5fr 0.5fr 0.5fr;
+    grid-row-gap : 10px;
+    /* grid-column-gap : 5px; */
+    /* grid-template-rows: ; */
+    grid-auto-rows: min-content;
+    position: relative;
+
+    
+
+}
+
+
+.ui-helper-clearfix.ng-star-inserted
+{
+    border: 1px solid gray;
+    width: 90%;
+    min-height : 200;
+    display: inline-block;
+    
+    margin : 5px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px 1px gray;
+}
+/* find me */
+.parent-container
+{
+    display: flex;
+    min-width: 100%;
+    padding-top: 2%;
+    
+    
+}
+/*find me*/
+.grouping-container
+{
+    width: 30%;
+    min-width: 30%;
+    display: inline-block;
+    background: gray;
+    height : 100%;
+    position: relative;
+}
+
+.ui-g-12.ui-md-6.drop-column.ng-star-inserted
+{
+    border: 1px solid black;
+    width: 85%;
+    min-height : 200px;
+    height : 30%;
+    align-items: center;
+    display: flex;
+    margin : 5%;
+    border-radius: 10px;
+    background: white;
+    /* box-shadow: 1px 1px 1px 1px black; */
+    text-align: center;
+}
+
+.student-image 
+{
+    border-radius: 50%;
+    transform: scale(0.7);
+}
+
+.student-name
+{
+    margin-left: 20px;
+    margin-top : 2px;
+    width : 20%;
+}
+
+mat-radio-group.mat-radio-group
+{
+    display: inline-block;
+    position : relative;
+    grid-column: 1 / span 1;
+    width: 100%;
+    
+    /*
+    margin-left: 3%; 
+    margin-right: 9.7%;
+    margin-top: 7%; */
+}
+
+mat-radio-button
+{
+    margin-bottom: 2%;
+}
+.student-profile-info
+{
+    width : 40%;
+    display: inline-block;
+}
+.student-performance
+{
+    display: inline-block;
+    width : 50%;
+    margin-left : 5%;
+}
+
+p#sort-title
+{
+    margin-left : 3%;
+}
+
+p.line-desc
+{
+    display: inline-block;
+    font-size : 11px;
+    margin-right: 10px;
+}
+
+
+.line
+{
+    
+    height: 15px;
+    
+    margin-left: 20%;
+    box-sizing: border-box;
+    background: #000;
+    margin-top : -20%;
+    
+}
+
+.line-1
+{
+    
+    background: #A9B9FF;
+}
+
+
+.line-2 
+{
+    background: #F47645;
+}
+
+.line-3
+{
+    background: #F7AA01;
+}
+
+.line-4
+{
+    background: #7ACFDE;
+}
+
+.line-5
+{
+    background: #FFA2DD;
+    margin-bottom: 10px;
+}
+
+.button {
+    width: 25px;
+    height: 20px;
+    display: inline-block;
+  }
+
+.red-button {
+    background-color: #d3cfcf;
+    
+  }
+
+.group-header-desc
+{
+    color :#A9B9FF;
+}
+
+.add-group-text
+{
+    display: inline-block;
+    color: white;
+}
+
+
+.group-avg-score 
+{
+    display: inline-block;
+    /* flex-direction: row; */
+    width: 40%;
+    height : 200px;
+    margin-top: 30%;
+    /* justify-content: center; */
+    
+    /* padding-left: 5%; */
+    
+    
+}
+
+.leaf {
+    position: absolute;
+    margin-left : 18%;
+    width: 40px;
+    height: 40px;
+    background:white;
+    border-radius: 40px 0;
+    transform-origin: left bottom;
+  }
+  
+  .leaf-1 {
+    transform: rotate(-45deg) translate(4px, -4px);
+    /* background: #A9B9FF; */
+    border : 2px solid #A9B9FF;
+  }
+  
+  .leaf-2 {
+    transform: rotate(27deg) translate(4px, -4px);
+    /* background: #F47645; */
+    border : 2px solid #F47645;
+  }
+  
+  .leaf-3 {
+    transform: rotate(99deg) translate(4px, -4px);
+    /* background:  #F7AA01; */
+    border : 2px solid #F7AA01;
+  }
+  
+  .leaf-4 {
+    transform: rotate(171deg) translate(4px, -4px);
+    /* background:  #7ACFDE; */
+    border: 2px solid #7ACFDE;
+  }
+  
+  .leaf-5 {
+    transform: rotate(243deg) translate(4px, -4px);
+    /* background: #FFA2DD; */
+    border: 2px solid #FFA2DD;
+  }
+
+  /*Unfortunately CSS doesn't allow for appending to properties, so these need to be redeclared
+  for each class of petals for all 5 petals*/
+
+  .leaf-1.exemplary
+  {
+    background: #A9B9FF;
+    transform: rotate(-45deg) scale(1.0) translate(4px, -4px);
+  }
+
+  .leaf-2.exemplary {
+    transform: rotate(27deg) scale(1.0) translate(4px, -4px);
+    background: #F47645;
+    
+  }
+
+  .leaf-3.exemplary{
+    transform: rotate(99deg) translate(4px, -4px);
+    background:  #F7AA01;
+    
+  }
+
+  .leaf-4.exemplary {
+    transform: rotate(171deg) translate(4px, -4px);
+    background:  #7ACFDE;
+    border: 2px solid #7ACFDE;
+  }
+  
+  .leaf-5.exemplary{
+    transform: rotate(243deg) translate(4px, -4px);
+    background: #FFA2DD;
+    border: 2px solid #FFA2DD;
+  }
+
+  .leaf-1.accomplished
+  {
+    background: #A9B9FF;
+    transform: rotate(-45deg) scale(0.75) translate(4px, -4px);
+  }
+
+  .leaf-2.accomplished {
+    transform: rotate(27deg) scale(0.75) translate(4px, -4px);
+    background: #F47645;
+    
+  }
+
+  .leaf-3.accomplished{
+    transform: rotate(99deg) scale(0.75) translate(4px, -4px);
+    background:  #F7AA01;
+    
+  }
+
+  .leaf-4.accomplished {
+    transform: rotate(171deg) scale(0.75) translate(4px, -4px);
+    background:  #7ACFDE;
+    border: 2px solid #7ACFDE;
+  }
+  
+  .leaf-5.accomplished{
+    transform: rotate(243deg) scale(0.75) translate(4px, -4px);
+    background: #FFA2DD;
+    border: 2px solid #FFA2DD;
+  }
+
+  .leaf-1.developing
+  {
+    background: #A9B9FF;
+    transform: rotate(-45deg) scale(0.5) translate(4px, -4px);
+  }
+
+  .leaf-2.developing {
+    transform: rotate(27deg) scale(0.5) translate(4px, -4px);
+    background: #F47645;
+    
+  }
+
+  .leaf-3.developing{
+    transform: rotate(99deg) scale(0.5) translate(4px, -4px);
+    background:  #F7AA01;
+    
+  }
+
+  .leaf-4.developing {
+    transform: rotate(171deg) scale(0.5) translate(4px, -4px);
+    background:  #7ACFDE;
+    border: 2px solid #7ACFDE;
+  }
+  
+  .leaf-5.developing{
+    transform: rotate(243deg) scale(0.5) translate(4px, -4px);
+    background: #FFA2DD;
+    border: 2px solid #FFA2DD;
+  }
+  
+
+
+/*Sorting button container*/
+.dropbtn {
+    background-color : #f1f1f1;
+    color: black;
+    font-size: 16px;
+    border: none;
+    border : 1px solid black;
+    border-radius: 5px;
+    margin-top : 10px;
+    height : 40px;
+    
+  }
+  
+  
+
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+    /* float: right; */
+    width : 5%;
+    margin-left : 60%;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .student-group-name
+  {
+      width : 50%;
+      height : 100%;
+      display: inline-block;
+      margin-top: 10%;
+      margin-left: 10px;;
+      
+  } 
+
+  
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .dropdown:hover .dropbtn {background-color: #3e8e41; color: white; }
