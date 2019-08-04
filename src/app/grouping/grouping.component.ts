@@ -124,6 +124,16 @@ export class GroupingComponent implements OnInit {
     
   // }
 
+  saveFunction()
+  {
+    alert("Saved grouping!");
+  }
+
+  confirmFunction()
+  {
+    alert("Confirmed grouping!");
+  }
+  
   toggleInput()
   {
     this.toggleInputValue = !this.toggleInputValue;
@@ -244,6 +254,19 @@ removeGroupValue(student : Student, index : number)
     else
     {
       this.calculate_average(index);
+    }
+  }
+
+  reset_groups()
+  {
+    for (let i = 0 ; i < this.selectedStudents.length; i++)
+    {
+      for(let j = 0; j < this.selectedStudents[i].length; j++)
+      {
+        this.availableStudents = [...this.availableStudents, this.selectedStudents[i][j]];
+      }
+      this.selectedStudents[i] = [];
+      this.groupDesignValues[i] = [];
     }
   }
 
@@ -615,7 +638,7 @@ removeGroupValue(student : Student, index : number)
 
 
 
-// formGroups(studentData : Student[], studentsPerGroup : number)
+// formEquitableGroups(studentData : Student[], studentsPerGroup : number)
 // {
     
 //       var jsonData = studentData;

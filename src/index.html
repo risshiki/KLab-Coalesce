@@ -23,6 +23,7 @@
           if (redirect && redirect != location.href) {
             // We need to redirect to the URL the user was trying to access.
             history.replaceState(null, null, redirect);
+            router.navigate(['/dashboard']);
           }
         })();
     </script>

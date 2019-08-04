@@ -36,6 +36,7 @@
     <button class = "configure-grouping" (click)="toggleOverlay()">Configure Grouping</button>
 
     <button id = "smart-grouping" (click)="smart_grouping()">Smart Grouping</button>
+    <button class = "reset-groups" (click)= "reset_groups()">Reset Groups</button>
     <!-- <label class = "label-white">Smart Grouping</label> -->
 
     <!-- <label class = "label-white">Configure Grouping</label>         -->
@@ -97,14 +98,18 @@
 
                     </div>
             </div>
+            
+            
     </div>
 
     <div class = "grouping-container">
-        <button class = "add-group-list" (click)="increment_groups()"> +</button> <p class = "add-group-text">Add group</p>
+        <!-- <button class = "add-group-list" (click)="increment_groups()"> +</button> <p class = "add-group-text">Add group</p> -->
         <button class = "student-input-value"(click) = toggleInput() ng-model = "toggleInputValue">✐</button>
         <input class = "student-input-box" size = "1" maxlength ="2" *ngIf = "toggleInputValue" [(ngModel)] = "studentsPerGroup" (keydown.enter) = "toggleInput()"> 
         <label class = "student-group-describer" *ngIf = "!toggleInputValue">{{studentsPerGroup}} </label>
         <label class = "label-white">students/group</label>
+        <button class = "save-button" (click) = "saveFunction()">Save</button>
+        <button class = "confirm-button" (click) = "confirmFunction()">Confirm</button>
         <br>
         
 
@@ -132,10 +137,12 @@
                     <div class = "line line-3" [style.width] =label_to_percentage(student.problem)></div>
                     <div class = "line line-4" [style.width] =label_to_percentage(student.project_management)></div>
                     <div class = "line line-5" [style.width] =label_to_percentage(student.group_discussion)></div> -->
-            </div>
-                    
-                
-            
+            </div>    
+        </div>
+        <div class="ui-g-12 ui-md-6 drop-column-addGroup"  (click) = "increment_groups()">  
+                <div class = "plus-sign-add">
+                    <label class = "plus-sign-label">+</label>
+                </div>
         </div>
     </div>
 
