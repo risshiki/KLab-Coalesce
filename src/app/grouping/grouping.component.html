@@ -13,7 +13,6 @@
             <div class="sortable-list-item" [sortablejs] = "groupingStrings">
                 <div *ngFor = "let item of groupingStrings" class = "priority-elements">
                     <span class= "draggable-priority">☰</span>
-                    
                     <span>{{item.name}}</span>
                 </div>
             </div>
@@ -103,7 +102,7 @@
     <div class = "grouping-container">
         <button class = "add-group-list" (click)="increment_groups()"> +</button> <p class = "add-group-text">Add group</p>
         <button class = "student-input-value"(click) = toggleInput() ng-model = "toggleInputValue">✐</button>
-        <input class = "student-input-box" size = "1" maxlength ="2" *ngIf = "toggleInputValue" [(ngModel)] = "studentsPerGroup" (keydown) = "toggleInput()"> 
+        <input class = "student-input-box" size = "1" maxlength ="2" *ngIf = "toggleInputValue" [(ngModel)] = "studentsPerGroup" (keydown.enter) = "toggleInput()"> 
         <label class = "student-group-describer" *ngIf = "!toggleInputValue">{{studentsPerGroup}} </label>
         <label class = "label-white">students/group</label>
         <br>

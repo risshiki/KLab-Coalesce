@@ -124,7 +124,7 @@ export class GroupingComponent implements OnInit {
     
   // }
 
-  toggleInput(value : boolean)
+  toggleInput()
   {
     this.toggleInputValue = !this.toggleInputValue;
   }
