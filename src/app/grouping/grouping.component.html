@@ -5,6 +5,8 @@
 </ng-template>
         -->
 
+
+<!-- Fixed position div for rendering drag and drop interface for grouping -->
 <div class="hover_background_grouping" *ngIf = "toggleOverlayGrouping">
     <span class="conf-smart-grouping"></span>
     <div>
@@ -18,10 +20,10 @@
             </div>
         <button class = "save-priority" (click) = "toggleOverlay()">Save</button>
     </div>
-    
 </div>
-                    
-
+          
+<!-- Row for rendering the overhead buttons -->
+<div class = "button-row">
     <div class="dropdown">
         <button (click)="myFunction()" class="dropbtn">Sort by</button>
         <div id="myDropdown" class="dropdown-content">
@@ -37,21 +39,11 @@
 
     <button id = "smart-grouping" (click)="smart_grouping()">Smart Grouping</button>
     <button class = "reset-groups" (click)= "reset_groups()">Reset Groups</button>
-    <!-- <label class = "label-white">Smart Grouping</label> -->
-
-    <!-- <label class = "label-white">Configure Grouping</label>         -->
-
+</div>
+    
     <div class = "parent-container">
+        <!-- Div for rendering student cards -->
         <div class="ui-g-12 ui-md-6 ui-g-nopad drag-column">
-                <!-- <mat-radio-group aria-label="Sort students by"> 
-                        <mat-radio-button value="1" id = "button1" style="color: #A9B9FF" (click)="sortAttributes(1)">Collaboration</mat-radio-button>
-                        <mat-radio-button value="2" id = "button2" style="color: #F47645" (click)="sortAttributes(2)">Communication</mat-radio-button>
-                        <mat-radio-button value="3" id = "button3" style="color: #F7AA01" (click)="sortAttributes(3)">Problem Solving</mat-radio-button>
-                        <mat-radio-button value="4" id = "button4" style="color: #7ACFDE" (click)="sortAttributes(4)">Project Management</mat-radio-button>
-                        <mat-radio-button value="5" id = "button5" style="color: #FFA2DD" (click)="sortAttributes(5)">Group discussion</mat-radio-button>
-                </mat-radio-group>  -->
-
-            <!-- optionLabel="name" (onChange)="sortAttributes($event)" -->
             <div *ngFor="let student of availableStudents; index as i"  class="ui-helper-clearfix" pDraggable="students" (onDragStart)="dragStart($event,student)" (onDragEnd)="dragEnd($event)">
                     
                     <div class = "student-profile-info">
@@ -62,35 +54,31 @@
                             <b>{{student.name}}</b>
                         </div>
                     </div>
+                    <!-- Div for rendering student performance -->
                     <div class = "student-performance">
 
                         <p class = "group-header-desc" ><b>{{student.student_header[header_index]}}</b></p>
-    <!-- 
-                        <p class = "line-desc">{{shortHand(student.collaboration)}}</p> -->
+    
                         <p class = "line-desc">Col</p>
-                        <div class = "line line-1" [style.width] =label_to_percentage(student.collaboration) >
-                                        
+                        <div class = "line line-1" [style.width] =label_to_percentage(student.collaboration) >              
                         </div>
                         
-                        <!-- <p class = "line-desc">{{shortHand(student.communication)}}</p> -->
+                        
                         <p class = "line-desc">Com</p>
                         <div class = "line line-2" [style.width] =label_to_percentage(student.communication)>
-
                         </div>
 
-                        <!-- <p class = "line-desc">{{shortHand(student.problem)}}</p> -->
+                        
                         <p class = "line-desc">P.S</p>
                         <div class = "line line-3" [style.width] =label_to_percentage(student.problem)>
-
                         </div>
 
-                        <!-- <p class = "line-desc">{{shortHand(student.project_management)}}</p> -->
+                        
                         <p class = "line-desc">P.M</p>
                         <div class = "line line-4" [style.width] =label_to_percentage(student.project_management)>
-
                         </div>
 
-                        <!-- <p class = "line-desc">{{shortHand(student.group_discussion)}}</p> -->
+                        
                         <p class = "line-desc">G.D</p>
                         <div class = "line line-5" [style.width] =label_to_percentage(student.group_discussion)>
 
@@ -103,7 +91,6 @@
     </div>
 
     <div class = "grouping-container">
-        <!-- <button class = "add-group-list" (click)="increment_groups()"> +</button> <p class = "add-group-text">Add group</p> -->
         <button class = "student-input-value"(click) = toggleInput() ng-model = "toggleInputValue">✐</button>
         <input class = "student-input-box" size = "1" maxlength ="2" *ngIf = "toggleInputValue" [(ngModel)] = "studentsPerGroup" (keydown.enter) = "toggleInput()"> 
         <label class = "student-group-describer" *ngIf = "!toggleInputValue">{{studentsPerGroup}} </label>
@@ -119,8 +106,7 @@
                     <ng-template pTemplate="body" let-student>
                         <tr>
                             <td>{{student.name}}</td>
-                            <td><button mat-button class = "button red-button" (click)="removeGroupValue(student, i)"> - </button></td>
-            
+                            <td><button mat-button class = "button remove-button" (click)="removeGroupValue(student, i)"> - </button></td>
                         </tr>
                     </ng-template>
                 </p-table>

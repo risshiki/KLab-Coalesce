@@ -26,6 +26,8 @@ export class GroupingComponent implements OnInit {
 
   header_index : number;
 
+  header_string : string;
+
   studentsPerGroup : number;
 
   groupDesignValues : any [] = new Array();
@@ -53,8 +55,11 @@ export class GroupingComponent implements OnInit {
     this.toggleInputValue = false;
     this.toggleOverlayGrouping = false;
 
+    this.header_string = "";
+
+    // Datasource rendering available students
     var dataSource =  [
-      { image_source: '', name: 'Ariana Camper',gender : "Female",  collaboration: 'Exemplary', communication :  'Accomplished', problem_solving : 'Developing', group_discussion : 'Accomplished', project_management : 'Accomplished'},
+      { image_source: '', name: 'Ariana Campbell',gender : "Female",  collaboration: 'Exemplary', communication :  'Accomplished', problem_solving : 'Developing', group_discussion : 'Accomplished', project_management : 'Accomplished'},
       { image_source: '', name: 'Dan Sawyer', gender : "Male", collaboration: 'Exemplary', communication :  'Exemplary', problem_solving : 'Exemplary', group_discussion : 'Exemplary', project_management : 'Exemplary'},
       { image_source: '', name: 'Max Goldberg', gender : "Male", collaboration: 'Accomplished', communication :  'Developing', problem_solving : 'Developing', group_discussion : 'Exemplary', project_management : 'Accomplished'},
       { image_source: '', name: 'Paige Braun', gender : "Female", collaboration: 'Exemplary', communication :  'Exemplary', problem_solving : 'Exemplary', group_discussion : 'Exemplary', project_management : 'Exemplary'},
@@ -107,10 +112,10 @@ export class GroupingComponent implements OnInit {
 
     this.groupingStrings =
     [
+      {name : "Project Management", value : project_management_sorted},
       {name : "Collaboration", value : collaboration_sorted},
       {name : "Communication", value : communication_sorted},
       {name : "Problem Solving", value : problem_sorted},
-      {name : "Project Management", value : project_management_sorted},
       {name : "Group Discussion", value : group_discussion_sorted},
     ];
 
@@ -133,7 +138,7 @@ export class GroupingComponent implements OnInit {
   {
     alert("Confirmed grouping!");
   }
-  
+
   toggleInput()
   {
     this.toggleInputValue = !this.toggleInputValue;
@@ -242,9 +247,7 @@ export class GroupingComponent implements OnInit {
 
 removeGroupValue(student : Student, index : number)
   {
-    console.log(index);
     let StudentIndex = this.findGroupIndex(student, index);
-    console.log(StudentIndex);
     this.availableStudents = [student,...this.availableStudents];
     this.selectedStudents[index] = this.selectedStudents[index].filter((val,i) => i!=StudentIndex); 
     if(this.selectedStudents[index].length == 0)
@@ -325,28 +328,6 @@ removeGroupValue(student : Student, index : number)
 
   }
 
-  shortHand(value : string)
-  {
-    let return_value = "";
-
-    if (value == "Exemplary")
-    {
-      return_value = "Exp";
-    }
-    
-    
-    if (value == "Accomplished")
-    {
-      return_value = "Acc";
-    }
-
-    if (value == "Developing")
-    {
-      return_value = "Dev";
-    }
-
-    return return_value;
-  }
 
   setAtrributeStyle(value: string)
   {
@@ -360,7 +341,8 @@ removeGroupValue(student : Student, index : number)
     // console.log(value);
     if (value ==  1)
     {
-      this.availableStudents.sort((a,b) => a.collaboration.localeCompare(b.collaboration)).reverse();
+      this.availableStudents.sort((a,b) => parseFloat(this.labelScore(b.collaboration)) - parseFloat(this.labelScore(a.collaboration)));
+      // this.availableStudents.sort((a,b) => this.labelScore(a.collaboration).localeCompare(this.labelScore(b.collaboration)));
       this.header_index = 0;
       // console.log(this.header_index);
       
@@ -372,7 +354,7 @@ removeGroupValue(student : Student, index : number)
 
     if (value ==  2)
     {
-      this.availableStudents.sort((a,b) => a.communication.localeCompare(b.communication)).reverse();
+      this.availableStudents.sort((a,b) => parseFloat(this.labelScore(b.communication)) - parseFloat(this.labelScore(a.communication)));
       this.header_index = 1;
       // console.log(this.header_index);
 
@@ -383,9 +365,8 @@ removeGroupValue(student : Student, index : number)
     }
     if (value ==  3)
     {
-      this.availableStudents.sort((a,b) => a.problem.localeCompare(b.problem)).reverse();
+      this.availableStudents.sort((a,b) => parseFloat(this.labelScore(b.problem)) - parseFloat(this.labelScore(a.problem)));
       this.header_index = 2;
-
       for(let i = 0; i < header_style_element.length; i++)
       {
         header_style_element[i].style.color = "#F7AA01";
@@ -394,7 +375,7 @@ removeGroupValue(student : Student, index : number)
     
     if (value ==  4)
     {
-      this.availableStudents.sort((a,b) => a.collaboration.localeCompare(b.project_management)).reverse();
+      this.availableStudents.sort((a,b) => parseFloat(this.labelScore(b.project_management)) - parseFloat(this.labelScore(a.project_management)));
       this.header_index = 3;
       // console.log(this.header_index);
 
@@ -406,7 +387,7 @@ removeGroupValue(student : Student, index : number)
 
     if (value ==  5)
     {
-      this.availableStudents.sort((a,b) => a.group_discussion.localeCompare(b.group_discussion)).reverse();
+      this.availableStudents.sort((a,b) => parseFloat(this.labelScore(b.group_discussion)) - parseFloat(this.labelScore(a.group_discussion)));
       this.header_index = 4;
 
       for(let i = 0; i < header_style_element.length; i++)
@@ -492,6 +473,12 @@ removeGroupValue(student : Student, index : number)
   
         var roster_size = jsonData.length;
         var no_of_groups = Math.floor(roster_size/size_groups);
+
+        if(this.groupDesignValues.length > no_of_groups )
+        {
+          this.selectedStudents.splice(no_of_groups-1,this.groupDesignValues.length-no_of_groups);
+          this.groupDesignValues.splice(no_of_groups-1,this.groupDesignValues.length-no_of_groups);
+        }
   
         this.numberOfGroups = no_of_groups;
 
@@ -511,7 +498,7 @@ removeGroupValue(student : Student, index : number)
   
         let remove_elements_array = [];
   
-        console.log(female_leaders);
+        // console.log(female_leaders);
   
         for(let i = 0; i< female_leaders;i++)
             {
@@ -525,8 +512,8 @@ removeGroupValue(student : Student, index : number)
                 remove_elements_array.push(class_roster[i][0].name);
             }
   
-          console.log(class_roster); 
-          console.log(remove_elements_array); 
+          // console.log(class_roster); 
+          // console.log(remove_elements_array); 
   
         for (let i in remove_elements_array)
         {
@@ -549,14 +536,14 @@ removeGroupValue(student : Student, index : number)
             {
               var push_value = remainder_roster[i%4].pop()
               class_roster[(i)%no_of_groups].push(push_value);
-              console.log((i)%no_of_groups);
+              // console.log((i)%no_of_groups);
             }
   
             else
             {
               var push_value = remainder_roster[i%4].pop()
               class_roster[(no_of_groups-1)-(i%no_of_groups)].push(push_value);
-              console.log((no_of_groups-1)-(i%no_of_groups));
+              // console.log((no_of_groups-1)-(i%no_of_groups));
             }
             // Remember that the pool of users is shared, one of these is bound to be redundant
             // But I am too lazy to optimize for something with O(n) complexity to begin with
@@ -585,11 +572,11 @@ removeGroupValue(student : Student, index : number)
             }
             else
             {
-                console.log(class_roster[i].length, size_groups );
+
             }
         }
   
-        console.log(undecided_class_roster);
+        // console.log(undecided_class_roster);
         var eval_class_roster = [];
   
         for (let i = 0; i < class_roster.length; i++)
@@ -620,7 +607,7 @@ removeGroupValue(student : Student, index : number)
   
         eval_class_roster_sorted.sort();
   
-        console.log(eval_class_roster_sorted);
+        // console.log(eval_class_roster_sorted);
         // console.log(eval_class_roster);
         // console.log(eval_class_roster_sorted);
   
@@ -630,183 +617,186 @@ removeGroupValue(student : Student, index : number)
             class_roster[eval_class_roster.indexOf(find_this_index)].push(undecided_class_roster[i]);
         }
   
-        console.log(class_roster);
+        // console.log(class_roster);
         return class_roster;
   }
 
 }
 
+// Archived work for forming gender balanced groups
 
+/*  
 
-// formEquitableGroups(studentData : Student[], studentsPerGroup : number)
-// {
+formEquitableGroups(studentData : Student[], studentsPerGroup : number)
+{
     
-//       var jsonData = studentData;
-//       // Segregate male and female participants in roster for grouping
-//       var male_leadership  =  studentData.filter(el => el.gender == "Male");
-//       var female_leadership  = studentData.filter(el => el.gender == "Female");
+      var jsonData = studentData;
+      // Segregate male and female participants in roster for grouping
+      var male_leadership  =  studentData.filter(el => el.gender == "Male");
+      var female_leadership  = studentData.filter(el => el.gender == "Female");
 
-//       var collaboration =  studentData;
-//       var problem =  studentData;
-//       var communication = studentData;
-//       var groupDiscussion = studentData;
+      var collaboration =  studentData;
+      var problem =  studentData;
+      var communication = studentData;
+      var groupDiscussion = studentData;
 
-//       var size_groups = studentsPerGroup;
+      var size_groups = studentsPerGroup;
 
-//       // Sort groups, then form better groups
+      // Sort groups, then form better groups
 
-//       male_leadership.sort((a, b) => parseFloat(this.labelScore(a.project_management)) - parseFloat(this.labelScore(b.project_management)));
-//       female_leadership.sort((a, b) => parseFloat(this.labelScore(a.project_management)) - parseFloat(this.labelScore(b.project_management)));
+      male_leadership.sort((a, b) => parseFloat(this.labelScore(a.project_management)) - parseFloat(this.labelScore(b.project_management)));
+      female_leadership.sort((a, b) => parseFloat(this.labelScore(a.project_management)) - parseFloat(this.labelScore(b.project_management)));
 
-//       // console.log(male_leadership, female_leadership);
-//       collaboration.sort((a, b) => parseFloat(this.labelScore(b.collaboration)) - parseFloat(this.labelScore(a.collaboration)));
-//       communication.sort((a, b) => parseFloat(this.labelScore(b.communication)) - parseFloat(this.labelScore(a.communication)));
-//       problem.sort((a, b) => parseFloat(this.labelScore(b.problem)) - parseFloat(this.labelScore(a.problem)));
+      // console.log(male_leadership, female_leadership);
+      collaboration.sort((a, b) => parseFloat(this.labelScore(b.collaboration)) - parseFloat(this.labelScore(a.collaboration)));
+      communication.sort((a, b) => parseFloat(this.labelScore(b.communication)) - parseFloat(this.labelScore(a.communication)));
+      problem.sort((a, b) => parseFloat(this.labelScore(b.problem)) - parseFloat(this.labelScore(a.problem)));
 
-//       // console.log(collaboration, communication, problem);
-//       var class_roster = [];
+      // console.log(collaboration, communication, problem);
+      var class_roster = [];
 
-//       var roster_size = jsonData.length;
-//       var no_of_groups = Math.floor(roster_size/size_groups);
+      var roster_size = jsonData.length;
+      var no_of_groups = Math.floor(roster_size/size_groups);
 
-//       this.numberOfGroups = no_of_groups;
-
-
+      this.numberOfGroups = no_of_groups;
 
 
-//       for (let i = 0; i < no_of_groups;i++)
-//       {
-//           class_roster.push([]);
-//       }
-//       // console.log(class_roster);
 
 
-//       // **Grouping begins here**
+      for (let i = 0; i < no_of_groups;i++)
+      {
+          class_roster.push([]);
+      }
+      // console.log(class_roster);
 
 
-//       // Set leaders first based on equity
+      // **Grouping begins here**
 
-//       let female_leaders = Math.floor(no_of_groups/2);
 
-//       let male_leaders = no_of_groups - female_leaders;
+      // Set leaders first based on equity
 
-//       let remove_elements_array = [];
+      let female_leaders = Math.floor(no_of_groups/2);
 
-//       console.log(female_leaders);
+      let male_leaders = no_of_groups - female_leaders;
 
-//       for(let i = 0; i< female_leaders;i++)
-//           {
-//               class_roster[i].push(female_leadership.pop());
-//               remove_elements_array.push(class_roster[i][0].name);
-//           }
+      let remove_elements_array = [];
 
-//       for(let i = female_leaders; i< female_leaders+male_leaders;i++)
-//           {
-//               class_roster[i].push(male_leadership.pop());
-//               remove_elements_array.push(class_roster[i][0].name);
-//           }
+      console.log(female_leaders);
 
-//         console.log(class_roster); 
-//         console.log(remove_elements_array); 
+      for(let i = 0; i< female_leaders;i++)
+          {
+              class_roster[i].push(female_leadership.pop());
+              remove_elements_array.push(class_roster[i][0].name);
+          }
 
-//       for (let i in remove_elements_array)
-//       {
-//           communication = communication.filter(function(el){ return el.name != remove_elements_array[i]; });
-//           collaboration = collaboration.filter(function(el){ return el.name != remove_elements_array[i]; });
-//           problem = problem.filter(function(el){ return el.name != remove_elements_array[i]; });
-//           groupDiscussion = groupDiscussion.filter(function(el){ return el.name != remove_elements_array[i]; });
-//       }
+      for(let i = female_leaders; i< female_leaders+male_leaders;i++)
+          {
+              class_roster[i].push(male_leadership.pop());
+              remove_elements_array.push(class_roster[i][0].name);
+          }
 
-//       // Grouping on other 4 components begins here
+        console.log(class_roster); 
+        console.log(remove_elements_array); 
 
-//       let remainder_roster = [communication, collaboration, problem, groupDiscussion];
+      for (let i in remove_elements_array)
+      {
+          communication = communication.filter(function(el){ return el.name != remove_elements_array[i]; });
+          collaboration = collaboration.filter(function(el){ return el.name != remove_elements_array[i]; });
+          problem = problem.filter(function(el){ return el.name != remove_elements_array[i]; });
+          groupDiscussion = groupDiscussion.filter(function(el){ return el.name != remove_elements_array[i]; });
+      }
 
-//       var round = 0;
+      // Grouping on other 4 components begins here
 
-//       for(let i = 0; i < jsonData.length - female_leaders - male_leaders; i++)
-//       {
+      let remainder_roster = [communication, collaboration, problem, groupDiscussion];
+
+      var round = 0;
+
+      for(let i = 0; i < jsonData.length - female_leaders - male_leaders; i++)
+      {
           
-//           if(round %2 == 0)
-//           {
-//             var push_value = remainder_roster[i%4].pop()
-//             class_roster[(i)%no_of_groups].push(push_value);
-//             console.log((i)%no_of_groups);
-//           }
+          if(round %2 == 0)
+          {
+            var push_value = remainder_roster[i%4].pop()
+            class_roster[(i)%no_of_groups].push(push_value);
+            console.log((i)%no_of_groups);
+          }
 
-//           else
-//           {
-//             var push_value = remainder_roster[i%4].pop()
-//             class_roster[(no_of_groups-1)-(i%no_of_groups)].push(push_value);
-//             console.log((no_of_groups-1)-(i%no_of_groups));
-//           }
-//           // Remember that the pool of users is shared, one of these is bound to be redundant
-//           // But I am too lazy to optimize for something with O(n) complexity to begin with
+          else
+          {
+            var push_value = remainder_roster[i%4].pop()
+            class_roster[(no_of_groups-1)-(i%no_of_groups)].push(push_value);
+            console.log((no_of_groups-1)-(i%no_of_groups));
+          }
+          // Remember that the pool of users is shared, one of these is bound to be redundant
+          // But I am too lazy to optimize for something with O(n) complexity to begin with
 
-//           remainder_roster[0] = remainder_roster[0].filter(function(el){ return el.name != push_value.name });
-//           remainder_roster[1] = remainder_roster[1].filter(function(el){ return el.name != push_value.name });
-//           remainder_roster[2] = remainder_roster[2].filter(function(el){ return el.name != push_value.name });
-//           remainder_roster[3] = remainder_roster[3].filter(function(el){ return el.name != push_value.name });
+          remainder_roster[0] = remainder_roster[0].filter(function(el){ return el.name != push_value.name });
+          remainder_roster[1] = remainder_roster[1].filter(function(el){ return el.name != push_value.name });
+          remainder_roster[2] = remainder_roster[2].filter(function(el){ return el.name != push_value.name });
+          remainder_roster[3] = remainder_roster[3].filter(function(el){ return el.name != push_value.name });
 
-//           if(i%no_of_groups ==0 && i!=0)
-//           {
-//               round += 1;
-//           }
+          if(i%no_of_groups ==0 && i!=0)
+          {
+              round += 1;
+          }
 
-//       }
+      }
 
-//       // console.log(class_roster);
+      // console.log(class_roster);
 
-//       let undecided_class_roster = [];
+      let undecided_class_roster = [];
 
-//       for (let i in class_roster)
-//       {   
-//           if(class_roster[i].length > size_groups)
-//           {
-//               undecided_class_roster.push(class_roster[i].pop());
-//           }
-//           else
-//           {
-//               console.log(class_roster[i].length, size_groups );
-//           }
-//       }
+      for (let i in class_roster)
+      {   
+          if(class_roster[i].length > size_groups)
+          {
+              undecided_class_roster.push(class_roster[i].pop());
+          }
+          else
+          {
+              console.log(class_roster[i].length, size_groups );
+          }
+      }
 
-//       console.log(undecided_class_roster);
-//       var eval_class_roster = [];
+      console.log(undecided_class_roster);
+      var eval_class_roster = [];
 
-//       for (let i = 0; i < class_roster.length; i++)
-//       {   
-//           var roster_total = 0;
-//           let roster_average = 0;
-//           var counter = 0;
-//           for (let j = 0; j< class_roster[i].length; j++)
-//           {
-//               let collaboration_score = this.labelScore(class_roster[i][j].collaboration);
-//               let communication_score = this.labelScore(class_roster[i][j].communication);
-//               let problem_score = this.labelScore(class_roster[i][j].problem);
-//               let groupDiscussion_score = this.labelScore(class_roster[i][j].project_management);
-//               roster_total = roster_total + 0.25*parseFloat(collaboration_score) + 0.25*parseFloat(communication_score) + 0.25*parseFloat(problem_score)+ 0.25*parseFloat(groupDiscussion_score);
-//               counter += 1;
-//           }
+      for (let i = 0; i < class_roster.length; i++)
+      {   
+          var roster_total = 0;
+          let roster_average = 0;
+          var counter = 0;
+          for (let j = 0; j< class_roster[i].length; j++)
+          {
+              let collaboration_score = this.labelScore(class_roster[i][j].collaboration);
+              let communication_score = this.labelScore(class_roster[i][j].communication);
+              let problem_score = this.labelScore(class_roster[i][j].problem);
+              let groupDiscussion_score = this.labelScore(class_roster[i][j].project_management);
+              roster_total = roster_total + 0.25*parseFloat(collaboration_score) + 0.25*parseFloat(communication_score) + 0.25*parseFloat(problem_score)+ 0.25*parseFloat(groupDiscussion_score);
+              counter += 1;
+          }
 
-//           roster_average = roster_total/counter;
+          roster_average = roster_total/counter;
 
-//           eval_class_roster.push(roster_average);
-//       }
+          eval_class_roster.push(roster_average);
+      }
 
-//       // console.log(eval_class_roster);
+      // console.log(eval_class_roster);
 
-//       // Find lowest scoring groups and arrange accordingly
+      // Find lowest scoring groups and arrange accordingly
 
-//       let eval_class_roster_sorted = eval_class_roster.slice();
+      let eval_class_roster_sorted = eval_class_roster.slice();
 
-//       eval_class_roster_sorted.sort();
+      eval_class_roster_sorted.sort();
 
-//       for( let i = 0 ; i < undecided_class_roster.length; i++)
-//       {
-//           let find_this_index = eval_class_roster_sorted[i];
-//           class_roster[eval_class_roster.indexOf(find_this_index)].push(undecided_class_roster[i]);
-//       }
+      for( let i = 0 ; i < undecided_class_roster.length; i++)
+      {
+          let find_this_index = eval_class_roster_sorted[i];
+          class_roster[eval_class_roster.indexOf(find_this_index)].push(undecided_class_roster[i]);
+      }
 
-//       console.log(class_roster);
-//       return class_roster;
-//   }
+      console.log(class_roster);
+      return class_roster;
+  }
+*/

@@ -161,7 +161,6 @@
 button#smart-grouping
 {
     display: inline-block;
-    /* margin-left: 8%; */
     min-height: 40px;
     background-color:#F7AA01;
     color : white;
@@ -222,7 +221,7 @@ button#smart-grouping:hover
     width: 70%;
     min-width: 70%;
     display: grid;
-    height: 100%;
+    height: 50%;
     grid-template-columns: 0.5fr 0.5fr 0.5fr;
     grid-row-gap : 10px;
     /* grid-column-gap : 5px; */
@@ -251,9 +250,9 @@ button#smart-grouping:hover
 {
     border: 1px solid gray;
     width: 90%;
-    min-height : 200;
+    /* min-height : 200px; */
     display: inline-block;
-    
+    height: auto;
     margin : 5px;
     border-radius: 10px;
     box-shadow: 1px 1px 1px 1px gray;
@@ -284,9 +283,6 @@ button#smart-grouping:hover
 {
     display: flex;
     min-width: 100%;
-    padding-top: 2%;
-    
-    
 }
 /*find me*/
 .grouping-container
@@ -296,6 +292,7 @@ button#smart-grouping:hover
     display: inline-block;
     background: gray;
     height : 100%;
+    min-height : 600px;
     position: relative;
 }
 
@@ -304,7 +301,7 @@ button#smart-grouping:hover
     border: 1px solid black;
     width: 85%;
     min-height : 200px;
-    height : 30%;
+    height : 20%;
     align-items: center;
     display: flex;
     margin : 5%;
@@ -372,8 +369,8 @@ p.line-desc
 .line
 {
     
-    height: 15px;
-    
+    min-height: 15px;
+    height : 5%;
     margin-left: 20%;
     box-sizing: border-box;
     background: #000;
@@ -406,8 +403,17 @@ p.line-desc
 .line-5
 {
     background: #FFA2DD;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
+
+.button-row
+{
+  height : 40px;
+  width: 100%;
+  margin-top : 2%;
+  margin-bottom : 2%;
+}
+
 
 .button {
     width: 25px;
@@ -587,11 +593,9 @@ p.line-desc
     color: black;
     font-size: 16px;
     border: none;
-    border : 1px solid black;
+    border : 2px solid gray;
     border-radius: 5px;
-    margin-top : 10px;
     height : 40px;
-    
   }
   
   
